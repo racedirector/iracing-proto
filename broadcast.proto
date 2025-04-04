@@ -267,6 +267,11 @@ service Broadcast {
 
   // A client-to-server RPC
   //
+  // Sends mutliple pit commands and returns the service flags
+  rpc PitCommandStream(stream PitCommandRequest) returns (PitCommandResponse) {}
+
+  // A client-to-server RPC
+  //
   // Sends a telemetry command
   rpc TelemetryCommand(TelemetryCommandRequest)
       returns (TelemetryCommandResponse) {}
