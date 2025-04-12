@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package iracing.telemetry;
 import "google/protobuf/struct.proto";
+import public "google/protobuf/empty.proto";
 
 option java_package = "com.iracing.telemetry";
 option java_outer_classname = "TelemetryMessageProto";
@@ -30,6 +31,12 @@ message GetTelemetryResponse {
 
 // A service for interacting with iRacing telemetry.
 service Telemetry {
+  // A server-to-client RPC
+  //
+  // The client sends an Empty message to the server and receives all telemetry
+  // data in the current buffer.
+  rpc DumpTelemetry(google.protobuf.Empty) returns (GetTelemetryResponse) {}
+
   // A server-to-client RPC
   //
   // The client sends a GetTelemetryRequest message to the server and gets a
