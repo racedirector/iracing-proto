@@ -29,8 +29,21 @@ message GetTelemetryResponse {
   google.protobuf.Struct telemetry = 1; 
 }
 
+// Request for getting the keys and types of the available telemetry
+message GetTelemetryTypesRequest{}
+
+message GetTelemetryTypesResponse {
+  google.protobuf.Struct types = 1;
+}
+
 // A service for interacting with iRacing telemetry.
 service Telemetry {
+  // A server-to-client RPC
+  //
+  // The client sends a GetTelemetryTypesRequest message to the server and
+  // the server responds with a dictionary of telemetry keys and their types.
+  rpc GetTelemetryTypes(GetTelemetryTypesRequest) returns (GetTelemetryTypesResponse) {}
+
   // A server-to-client RPC
   //
   // The client sends an Empty message to the server and receives all telemetry
