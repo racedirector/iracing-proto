@@ -203,7 +203,10 @@ message GetAvailableCamerasResponse {
   uint32 camera = 4;
 }
 
+//
+// A service for interacting with iRacing broadcast features.
 service Broadcast {
+  //
   // A client-to-server RPC
   //
   // Returns the available camera groups and cameras per-group,
@@ -211,83 +214,98 @@ service Broadcast {
   rpc GetAvailableCameras(google.protobuf.Empty)
       returns (GetAvailableCamerasResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Switches the camera to a new position. Returns the new camera position.
   rpc CameraSwitchPosition(CameraSwitchPositionRequest)
       returns (CameraSwitchPositionResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Switches the camera to a new number. Returns the new camera position.
   rpc CameraSwitchNumber(CameraSwitchNumberRequest)
       returns (CameraSwitchNumberResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sets the state of the camera
   rpc CameraSetState(CameraSetStateRequest) returns (CameraSetStateResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sets the play speed of the replay
   rpc ReplaySetPlaySpeed(ReplaySetPlaySpeedRequest)
       returns (ReplaySetPlaySpeedResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sets the play position of the replay
   rpc ReplaySetPlayPosition(ReplaySetPlayPositionRequest)
       returns (ReplaySetPlayPositionResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Searches the replay
   rpc ReplaySearch(ReplaySearchRequest) returns (ReplaySearchResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sets the state of the replay
   rpc ReplaySetState(ReplaySetStateRequest) returns (ReplaySetStateResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Reloads the textures
   rpc ReloadTextures(ReloadTexturesRequest) returns (ReloadTexturesResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sends a chat command
   rpc ChatCommand(ChatCommandRequest) returns (ChatCommandResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sends a pit command
   rpc PitCommand(PitCommandRequest) returns (PitCommandResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sends mutliple pit commands and returns the service flags
   rpc PitCommandStream(stream PitCommandRequest) returns (PitCommandResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sends a telemetry command
   rpc TelemetryCommand(TelemetryCommandRequest)
       returns (TelemetryCommandResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Sends a force feedback command
   rpc ForceFeedbackCommand(ForceFeedbackCommandRequest)
       returns (ForceFeedbackCommandResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Searches the replay by session time
   rpc ReplaySearchSessionTime(ReplaySearchSessionTimeRequest)
       returns (ReplaySearchSessionTimeResponse) {}
 
+  //
   // A client-to-server RPC
   //
   // Captures video
