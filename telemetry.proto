@@ -13,13 +13,13 @@ option objc_class_prefix = "IR";
 message TelemetrySubscriptionRequest {
   // The desired fps for the telemetry stream. Greater than 0 and less than 60.
   uint32 fps = 1;
-  // Supports any top-level key in the iRacing telemetry buffer.
+  // Supports any top-level key from iRacing telemetry or session.
   repeated string keys = 2;
 }
 
 // Message for retrieving telemetry data.
 message GetTelemetryRequest {
-  // Supports any top-level key in the iRacing telemetry buffer.
+  // Supports any top-level key from iRacing telemetry or session.
   repeated string keys = 1;
 }
 
