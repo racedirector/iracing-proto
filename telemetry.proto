@@ -29,45 +29,9 @@ message GetTelemetryResponse {
   google.protobuf.Struct telemetry = 1;
 }
 
-// Request for getting the keys and types of the available telemetry
-message GetTelemetryTypesRequest {}
-
-// Response message of the telemetry types
-message GetTelemetryTypesResponse { google.protobuf.Struct types = 1; }
-
-// Request for getting the JSON Schema
-message GetTelemetryJSONSchemaRequest {}
-
-// Response message of JSON schema encoded as a protobuf Struct
-message GetTelemetryJSONSchemaResponse {
-  // The JSON schema
-  google.protobuf.Struct telemetry = 1;
-  google.protobuf.Struct session = 2;
-}
-
-// Response message of JSON schema encoded as a string
-message GetTelemetryJSONSchemaStringResponse {
-  // The JSON schema
-  string telemetry = 1;
-  string session = 2;
-}
-
 //
 // A service for interacting with iRacing telemetry.
 service Telemetry {
-  //
-  // A server-to-client RPC
-  //
-  // The client sends a GetTelemetryTypesRequest message to the server and
-  // the server responds with a dictionary of telemetry keys and their types.
-  rpc GetTelemetryTypes(GetTelemetryTypesRequest)
-      returns (GetTelemetryTypesResponse) {}
-
-  rpc GetTelemetryJSONSchema(GetTelemetryTypesRequest)
-      returns (GetTelemetryJSONSchemaResponse) {}
-
-  rpc GetTelemetryJSONSchemaString(GetTelemetryTypesRequest)
-      returns (GetTelemetryJSONSchemaStringResponse) {}
 
   //
   // A server-to-client RPC
