@@ -41,13 +41,15 @@ message GetTelemetryJSONSchemaRequest {}
 // Response message of JSON schema encoded as a protobuf Struct
 message GetTelemetryJSONSchemaResponse {
   // The JSON schema
-  google.protobuf.Struct schema = 1;
+  google.protobuf.Struct telemetry = 1;
+  google.protobuf.Struct session = 2;
 }
 
 // Response message of JSON schema encoded as a string
 message GetTelemetryJSONSchemaStringResponse {
   // The JSON schema
-  string schema = 1;
+  string telemetry = 1;
+  string session = 2;
 }
 
 //
