@@ -18,50 +18,79 @@ message TelemetrySubscriptionRequest {
 }
 
 // Message for retrieving telemetry data.
-message GetTelemetryRequest { 
+message GetTelemetryRequest {
   // Supports any top-level key in the iRacing telemetry buffer.
-  repeated string keys = 1; 
+  repeated string keys = 1;
 }
 
 // Response message of telemetry data.
-message GetTelemetryResponse { 
+message GetTelemetryResponse {
   // An object containing telemetry data.
-  google.protobuf.Struct telemetry = 1; 
+  google.protobuf.Struct telemetry = 1;
 }
 
 // Request for getting the keys and types of the available telemetry
-message GetTelemetryTypesRequest{}
+message GetTelemetryTypesRequest {}
 
-message GetTelemetryTypesResponse {
-  google.protobuf.Struct types = 1;
+// Response message of the telemetry types
+message GetTelemetryTypesResponse { google.protobuf.Struct types = 1; }
+
+// Request for getting the JSON Schema
+message GetTelemetryJSONSchemaRequest {}
+
+// Response message of JSON schema encoded as a protobuf Struct
+message GetTelemetryJSONSchemaResponse {
+  // The JSON schema
+  google.protobuf.Struct schema = 1;
 }
 
+// Response message of JSON schema encoded as a string
+message GetTelemetryJSONSchemaStringResponse {
+  // The JSON schema
+  string schema = 1;
+}
+
+//
 // A service for interacting with iRacing telemetry.
 service Telemetry {
+  //
   // A server-to-client RPC
   //
   // The client sends a GetTelemetryTypesRequest message to the server and
   // the server responds with a dictionary of telemetry keys and their types.
-  rpc GetTelemetryTypes(GetTelemetryTypesRequest) returns (GetTelemetryTypesResponse) {}
+  rpc GetTelemetryTypes(GetTelemetryTypesRequest)
+      returns (GetTelemetryTypesResponse) {}
 
+  rpc GetTelemetryJSONSchema(GetTelemetryTypesRequest)
+      returns (GetTelemetryJSONSchemaResponse) {}
+
+  rpc GetTelemetryJSONSchemaString(GetTelemetryTypesRequest)
+      returns (GetTelemetryJSONSchemaStringResponse) {}
+
+  //
   // A server-to-client RPC
   //
   // The client sends an Empty message to the server and receives all telemetry
   // data in the current buffer.
   rpc DumpTelemetry(google.protobuf.Empty) returns (GetTelemetryResponse) {}
 
+  //
   // A server-to-client RPC
   //
   // The client sends a GetTelemetryRequest message to the server and gets a
   // single GetTelemetryResponse message back.
   rpc GetTelemetry(GetTelemetryRequest) returns (GetTelemetryResponse) {}
 
+  //
   // A client-to-server bidirectional streaming RPC
   //
   // The client sends a GetTelemetryRequest message each time it wants a new
-  // telemetry item. Useful when the client wants to control it's own cadence for iteration.
-  rpc RequestTelemetryStream(stream GetTelemetryRequest) returns (stream GetTelemetryResponse) {}
+  // telemetry item. Useful when the client wants to control it's own cadence
+  // for iteration.
+  rpc RequestTelemetryStream(stream GetTelemetryRequest)
+      returns (stream GetTelemetryResponse) {}
 
+  //
   // A client-to-server streaming RPC
   //
   // The client sends a TelemetrySubscriptionRequest message to the server and
