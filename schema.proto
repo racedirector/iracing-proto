@@ -35,9 +35,9 @@ service Schema {
   rpc GetTelemetryTypes(GetTelemetryTypesRequest)
       returns (GetTelemetryTypesResponse) {}
 
-  rpc GetTelemetryJSONSchema(GetTelemetryTypesRequest)
+  rpc GetTelemetryJSONSchema(GetTelemetryJSONSchemaRequest)
       returns (GetTelemetryJSONSchemaResponse) {}
 
-  rpc GetTelemetryJSONSchemaString(GetTelemetryTypesRequest)
+  rpc GetTelemetryJSONSchemaString(GetTelemetryJSONSchemaRequest)
       returns (GetTelemetryJSONSchemaStringResponse) {}
 }
