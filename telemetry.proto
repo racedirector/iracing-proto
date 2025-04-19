@@ -29,6 +29,10 @@ message GetTelemetryResponse {
   google.protobuf.Struct telemetry = 1;
 }
 
+message GetTelemetryStringResponse {
+  string telemetry = 1;
+}
+
 //
 // A service for interacting with iRacing telemetry.
 service Telemetry {
@@ -39,6 +43,7 @@ service Telemetry {
   // The client sends an Empty message to the server and receives all telemetry
   // data in the current buffer.
   rpc DumpTelemetry(google.protobuf.Empty) returns (GetTelemetryResponse) {}
+  rpc DumpTelemetryString(google.protobuf.Empty) returns (GetTelemetryStringResponse) {}
 
   //
   // A server-to-client RPC
@@ -46,6 +51,7 @@ service Telemetry {
   // The client sends a GetTelemetryRequest message to the server and gets a
   // single GetTelemetryResponse message back.
   rpc GetTelemetry(GetTelemetryRequest) returns (GetTelemetryResponse) {}
+  rpc GetTelemetryString(GetTelemetryRequest) returns (GetTelemetryStringResponse) {}
 
   //
   // A client-to-server bidirectional streaming RPC
@@ -64,4 +70,6 @@ service Telemetry {
   // over the stream after the initial message.
   rpc SubscribeTelemetryStream(TelemetrySubscriptionRequest)
       returns (stream GetTelemetryResponse) {}
+  rpc SubscribeTelemetryStringStream(TelemetrySubscriptionRequest)
+      returns (stream GetTelemetryStringResponse) {}
 }
