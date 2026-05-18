@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package iracing.broadcast;
-import public "google/protobuf/empty.proto";
+import "google/protobuf/empty.proto";
 
 option java_package = "com.iracing.broadcast";
 option java_outer_classname = "BroadcastMessageProto";
@@ -21,17 +21,6 @@ enum ChatCommandMode {
   CHAT_COMMAND_MODE_BEGIN_CHAT = 2;
   CHAT_COMMAND_MODE_REPLY = 3;
   CHAT_COMMAND_MODE_CANCEL = 4;
-}
-
-enum CameraState {
-  CAMERA_STATE_UNKNOWN = 0;
-  CAMERA_STATE_CAMERA_TOOL_ACTIVE = 1;
-  CAMERA_STATE_UI_HIDDEN = 2;
-  CAMERA_STATE_USE_AUTO_SHOT_SELECTION = 3;
-  CAMERA_STATE_USE_TEMPORARY_EDITS = 4;
-  CAMERA_STATE_USE_KEY_ACCELERATION = 5;
-  CAMERA_STATE_USE_KEY10X_ACCELERATION = 6;
-  CAMERA_STATE_USE_MOUSE_AIM_MODE = 7;
 }
 
 enum ReplayPositionMode {
@@ -113,15 +102,15 @@ message CameraSwitchNumberResponse {
   uint32 camera = 3;
 }
 
-message CameraSetStateRequest { optional CameraState state = 1; }
-message CameraSetStateResponse { CameraState state = 1; }
+message CameraSetStateRequest { optional uint32 state = 1; }
+message CameraSetStateResponse { uint32 state = 1; }
 
 message ReplaySetPlaySpeedRequest {
-  optional uint32 speed = 1;
+  optional int32 speed = 1;
   optional bool is_slow_motion = 2;
 }
 message ReplaySetPlaySpeedResponse {
-  uint32 speed = 1;
+  int32 speed = 1;
   bool is_slow_motion = 2;
 }
 
@@ -178,7 +167,7 @@ message ForceFeedbackCommandResponse { float max_force = 1; }
 
 message ReplaySearchSessionTimeRequest {
   optional uint32 session_number = 1;
-  optional float session_time_ms = 2;
+  optional uint32 session_time_ms = 2;
 }
 message ReplaySearchSessionTimeResponse {}
 
